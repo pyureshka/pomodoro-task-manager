@@ -3,6 +3,15 @@
     <div class="col s6 offset-s3">
       <h4 class="orange-text text-darken-3">Мои задачи</h4>
       <hr>
+
+      <!-- болванка -->
+      <div class="col s4">
+        <select ref="select">
+          <option value="" disabled selected>выберите тег</option>
+          <option  v-for="task in tasksFilter" :key="task.id"><span v-if="task.tags !== []">{{ task.tags }}</span></option>
+        </select>
+      </div>
+
       <div class="filter">
         <button @click="filter = 'all'" class="btn waves-effect waves-light btn-small">Все</button>
         <button @click="filter = 'active'" class="btn waves-effect waves-light btn-small">Активные</button>
@@ -15,6 +24,7 @@
               <th>статус</th>
               <th>название</th>
               <th>срок сдачи</th>
+              <th><i class="material-icons" >group_work</i></th>
               <th></th>
           </tr>
         </thead>
@@ -25,8 +35,9 @@
            <td>{{task.title}}</td>
            <td v-if="task.date">{{new Date (task.date).toLocaleDateString()}}</td>
            <td v-else>--</td>
+           <td>{{task.timePom}}</td>
            <td><router-link class="btn btn-small " :to=" '/task/' + task.id"><i class="material-icons">open_in_new</i></router-link></td>
-           <td><button @click="deleteTask(task.id)" class="btn-floating btn-small waves-effect waves-red white"><i class="material-icons close">close</i></button></td>
+           <td><button @click="deleteTask(task.id)" class="btn-floating btn-small waves-effect waves-red test"><i class="material-icons close">close</i></button></td>
           </tr>
         </tbody>
       </table>
@@ -34,12 +45,13 @@
     </div>
 
       <div class="fixed-action-btn">
-      <router-link to="/create" class="btn-floating btn-large waves-effect waves-light add" ><i class="material-icons">add</i></router-link>
+      <router-link to="/create" class="btn-floating btn-large waves-effect waves-light orange darken-1 add" ><i class="material-icons">add</i></router-link>
       </div>
   </div>
 </template>
 
 <script>
+import M from 'materialize-css/dist/js/materialize.min'
 export default {
   data: () => {
     return {
@@ -69,6 +81,9 @@ export default {
     updateStatus (id) {
       this.$store.dispatch('updateStatus', id)
     }
+  },
+  mounted () {
+    M.FormSelect.init(this.$refs.select)
   }
 }
 </script>
@@ -83,15 +98,22 @@ export default {
 .btn {
   background-color: rgb(255, 173, 105);
 }
+.test {
+  background-color: rgba(237, 84, 29, 0);
+  box-shadow: 0 ;
+}
+.test:hover {
+  background-color: #ffefe2c2;
+}
 table.highlight > tbody > tr:hover {
-  background-color: #ffe5d18e;
+  background-color: #92bfbd52;
 }
 p {
   color: #ef6c00;
   font-size: 24px;
 }
 th {
-  color: #26a69a;
+  color: #ef6c00;
 }
 button {
   margin-right: 10px;

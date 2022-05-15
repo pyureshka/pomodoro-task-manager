@@ -54,17 +54,19 @@ export default createStore({
       state.tasksArr = tasks
       localStorage.setItem('tasksArr', JSON.stringify(state.tasksArr))
     },
-
     inc (state) {
       //  пока так, пока здесь
-      const upDate = new Date()
-      const test = new Date()
-      test.setHours(0, 0, 0, 0)
-      if (upDate.getHours() === test.getHours()) {
-        state.donePom = 0
-      }
       state.donePom++
       localStorage.setItem('donePom', JSON.stringify(state.donePom))
+    },
+    incPom (state, id) {
+      const tasks = state.tasksArr.concat()
+      const idx = tasks.findIndex(t => t.id === id)
+      const task = tasks[idx]
+
+      task.timePom++
+      state.tasksArr = tasks
+      localStorage.setItem('tasksArr', JSON.stringify(state.tasksArr))
     }
   },
   actions: {
@@ -79,6 +81,9 @@ export default createStore({
     },
     deleteTask ({ commit }, id) {
       commit('deleteTask', id)
+    },
+    incPom ({ commit }, id) {
+      commit('incPom', id)
     }
   }
 })

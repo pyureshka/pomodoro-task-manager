@@ -1,0 +1,8 @@
+body {
+  background: linear-gradient(45deg, #ffeac8, #77ffdf5a);
+  /* background: radial-gradient(60% 50%,  #ecf7f2, #fff2dd); */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-weight: 300;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}

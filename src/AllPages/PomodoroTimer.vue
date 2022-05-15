@@ -9,11 +9,14 @@
       <div class="card-panel">
       <!-- болванка -->
       <div class="input-field col s12 ">
-        <!-- доделать -->
-        <select @change="test(value)" ref="select">
+        <!-- не читает ид -->
+        <select ref="select">
           <option value="" disabled selected>выберите задачу</option>
-          <option v-for="task in tasksArr" :key="task.id" value="task.time">{{ task.title }}</option>
+          <option v-for="task in tasksArr" :key="task.id" >{{ task.title }}</option>
         </select>
+      </div>
+      <div v-if="active">
+        <h5> Хорошей работы! </h5>
       </div>
 
         <div class="time">
@@ -30,9 +33,9 @@
           <button @click="decB" :disabled="disBtnRBr" class="btn waves-effect waves-light"><i class="material-icons">chevron_right</i></button>
         </div>
         <div class="test">
-          <button @click="runCount(), (active = true)" class="btn-floating btn-large waves-effect waves-light" :disabled="disRun"><i class="small material-icons">play_arrow</i></button>
+          <button @click="runCount(), (active = true)" class="btn-floating btn-large waves-effect waves-light orange darken-1" :disabled="disRun"><i class="small material-icons">play_arrow</i></button>
           <!-- <button @click="stopCount" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">pause_circle_filled</i></button> -->
-          <button @click="resetCount()" class="btn-floating btn-large waves-effect waves-light" :disabled="disReset"><i class="material-icons">replay</i></button>
+          <button @click="resetCount()" class="btn-floating btn-large waves-effect waves-light orange darken-1" :disabled="disReset"><i class="material-icons">replay</i></button>
         </div>
       </div>
     </div>
@@ -94,6 +97,7 @@ export default {
           clearInterval(this.timerId)
           this.playAudio()
           this.runBreak()
+          this.pomCount()
           this.timeWork = 0
           this.active = false
         }
@@ -108,10 +112,11 @@ export default {
         this.timePassedBreak = Math.round((this.timeBreak - Date.now()) / 1000)
         if (this.timePassedBreak < 0) {
           clearInterval(this.timerIdB)
+          this.playAudio()
+          this.stop()
           this.timeBreak = 300
           this.timeWork = 1500
           this.activeBreak = false
-          this.playAudio()
         }
       }, 1000)
     },
@@ -135,7 +140,7 @@ export default {
     dec () {
       this.timeWork -= 300
       this.disBtnL = false
-      if (this.timeWork === 300) {
+      if (this.timeWork === 0) {
         this.disBtnR = true
       }
     },
@@ -162,9 +167,12 @@ export default {
         this.pauseCountSec = Date.now() - start
       }, 1000)
     },
-    test (t) {
-      // t = this.timeWork
-      console.log(t)
+    // test: function () {
+    //   console.log(this.selected)
+    //   // this.$store.dispatch('incPom', id)
+    // },
+    pomCount () {
+      this.$store.commit('inc')
     }
   },
   computed: {
@@ -222,7 +230,7 @@ hr {
   border-color: #ef6c00;
 }
 .card-panel {
-  background-color: #fff0cf26;
+  background-color: #fff0cf36;
 }
 .btn-floating:hover,.btn:hover {
   background-color: #ab4e02;

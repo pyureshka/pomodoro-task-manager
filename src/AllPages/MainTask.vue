@@ -33,7 +33,7 @@
         <br>
   </div>
   <div class="fixed-action-btn">
-  <router-link to="/list" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">arrow_back</i></router-link>
+  <router-link to="/list" class="btn-floating btn-large waves-effect waves-light orange darken-1"><i class="material-icons">arrow_back</i></router-link>
   </div>
 </template>
 
@@ -75,14 +75,6 @@ export default {
       this.$router.push('/list')
     }
   }
-  // unmounted () {
-  //   if (this.date && this.date.destroy) {
-  //     this.date.destroy()
-  //   }
-  //   if (this.chips && this.chips.destroy) {
-  //     this.chips.destroy()
-  //   }
-  // }
 }
 </script>
 
