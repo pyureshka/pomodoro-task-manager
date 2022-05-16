@@ -12,6 +12,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "nouislider": "^15.6.0",
     "register-service-worker": "^1.7.2",
+    "sweetalert2": "^11.4.14",
     "vue": "^3.2.13",
     "vue-custom-range-slider": "^0.2.3",
     "vue-router": "^4.0.3",

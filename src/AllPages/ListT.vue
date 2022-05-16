@@ -8,7 +8,7 @@
       <div class="col s4">
         <select ref="select">
           <option value="" disabled selected>выберите тег</option>
-          <option  v-for="task in tasksFilter" :key="task.id"><span v-if="task.tags !== []">{{ task.tags }}</span></option>
+          <option  v-for="task in tasksFilter" :key="task.tags">{{ task.tags }}</option>
         </select>
       </div>
 
@@ -24,7 +24,7 @@
               <th>статус</th>
               <th>название</th>
               <th>срок сдачи</th>
-              <th><i class="material-icons" >group_work</i></th>
+              <th>пом</th>
               <th></th>
           </tr>
         </thead>
@@ -115,12 +115,12 @@ th {
   color: #ef6c00;
 }
 button {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 .close {
   color:#ef6c00
 }
 .filter {
-  padding-left: 20rem;
+  padding-left: 19rem;
 }
 </style>
