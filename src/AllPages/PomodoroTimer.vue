@@ -7,18 +7,20 @@
       <hr>
 
       <div class="card-panel">
-      <!-- болванка -->
-      <div class="input-field col s12 ">
-        <!-- не читает ид -->
-        <select ref="select">
+
+      <div class="input-field col s11">
+        <select v-model="selected" ref="select">
           <option value="" disabled selected>выберите задачу</option>
-          <option v-for="task in tasksArr" :key="task.id" >{{ task.title }}</option>
+          <option v-for="task in tasksArr" :key="task.id" :value="task.id">{{ task.title }}</option>
         </select>
       </div>
+
+      <button v-if="selected" class="btn-floating btn-small waves-effect waves-red testClear" @click="selected = 0"><i class="material-icons close">close</i></button>
+
       <div v-if="active">
         <h5> Хорошей работы! </h5>
       </div>
-
+        <br>
         <div class="time">
           <p> время работы </p>
           <button :disabled="disBtnL" @click="inc" class="btn waves-effect waves-light"><i class="material-icons">chevron_left</i></button>
@@ -48,6 +50,7 @@ import sound from '@/assets/end.mp3'
 export default {
   data () {
     return {
+      selected: 0,
       disRun: false,
       disReset: true,
       disBtnR: false,
@@ -100,6 +103,9 @@ export default {
           this.pomCount()
           this.timeWork = 0
           this.active = false
+          if (this.selected !== 0) {
+            this.timePomCount()
+          }
         }
       }, 1000)
     },
@@ -167,10 +173,9 @@ export default {
         this.pauseCountSec = Date.now() - start
       }, 1000)
     },
-    // test: function () {
-    //   console.log(this.selected)
-    //   // this.$store.dispatch('incPom', id)
-    // },
+    timePomCount () {
+      this.$store.dispatch('incPom', this.selected)
+    },
     pomCount () {
       this.$store.commit('inc')
     }
@@ -230,7 +235,7 @@ hr {
   border-color: #ef6c00;
 }
 .card-panel {
-  background-color: #fff0cf36;
+  background-color: #fdf8ee54;
 }
 .btn-floating:hover,.btn:hover {
   background-color: #ab4e02;
@@ -249,10 +254,16 @@ hr {
   margin: 0 5px;
 }
 .time {
-    padding: 0 9rem;
+    padding: 0 10rem;
 }
 p {
   color: #ef6c00;
   font-size: 24px;
+}
+.testClear {
+  background-color: rgba(237, 84, 29, 0);
+}
+.close {
+  color:#ef6c00
 }
 </style>

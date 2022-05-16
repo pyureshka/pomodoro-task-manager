@@ -7,10 +7,9 @@
           <form @submit.prevent="subT">
           <div class="input-field col s12">
             <textarea v-model="description" id="textarea1" class="materialize-textarea"></textarea>
-          </div>
+            <label for="textarea1">описание</label>
 
-          <div class="input-field col s12">
-            <div class="chips" ref="chips"></div>
+            <div class="chips chips-placeholder" ref="chips"></div>
           </div>
 
           <div class="input-field col s3">
@@ -52,7 +51,9 @@ export default {
   mounted () {
     this.description = this.task.description
     this.chips = M.Chips.init(this.$refs.chips, {
-      data: this.task.tags
+      data: this.task.tags,
+      placeholder: 'введите тег',
+      secondaryPlaceholder: '+тег'
     })
     this.date = M.Datepicker.init(this.$refs.datepicker, {
       format: 'dd.mm.yyyy',

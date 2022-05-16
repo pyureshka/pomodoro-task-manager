@@ -100,7 +100,6 @@ export default {
 }
 .test {
   background-color: rgba(237, 84, 29, 0);
-  box-shadow: 0 ;
 }
 .test:hover {
   background-color: #ffefe2c2;
