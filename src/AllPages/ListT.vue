@@ -4,13 +4,13 @@
       <h4 class="orange-text text-darken-3">Мои задачи</h4>
       <hr>
 
-      <!-- болванка -->
+      <!-- болванка
       <div class="col s4">
         <select ref="select">
           <option value="" disabled selected>выберите тег</option>
-          <option  v-for="task in tasksFilter" :key="task.tags">{{ task.tags }}</option>
+          <option v-for="task in tasksFilter" :key="task.id"><span>{{ task.tags[0]['tag'] }}</span></option>
         </select>
-      </div>
+      </div> -->
 
       <div class="filter">
         <button @click="filter = 'all'" class="btn waves-effect waves-light btn-small">Все</button>
@@ -25,6 +25,7 @@
               <th>название</th>
               <th>срок сдачи</th>
               <th>пом</th>
+              <th></th>
               <th></th>
           </tr>
         </thead>
@@ -53,6 +54,7 @@
 <script>
 import M from 'materialize-css/dist/js/materialize.min'
 export default {
+
   data: () => {
     return {
       filter: 'all'
@@ -74,6 +76,7 @@ export default {
     //   return this.$store.getters.tasksArr
     // }
   },
+
   methods: {
     deleteTask (id) {
       this.$store.dispatch('deleteTask', id)

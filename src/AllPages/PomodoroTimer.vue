@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <div class="col s6 offset-s3">
-
       <div class="card-panel">
 
       <div class="input-field col s6 offset-s3">
@@ -133,7 +132,7 @@ export default {
     dec () {
       this.timeWork -= 300
       this.disBtnL = false
-      if (this.timeWork === 0) {
+      if (this.timeWork === 600) {
         this.disBtnR = true
       }
     },

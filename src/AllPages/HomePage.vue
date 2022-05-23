@@ -14,19 +14,37 @@
       </p>
       <p class="flow-text center-align">Баланс – это возможно</p>
     <div class="center">
-      <button class="btn btn-medium waves-effect waves-light orange darken-1">начать!</button>
+      <button @click="showAlert" class="btn btn-medium waves-effect waves-light orange darken-1">начать!</button>
     </div>
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  methods: {
+    showAlert () {
+      // Use sweetalert2
+      this.$swal({
+        title: 'Привет!',
+        html: 'Во вкладке <b>"задачи"</b> вы можете распланировать свои дела, ' +
+        'добавить к задачам теги, срок сдачи и описание.<br><br>' +
+        'Таймер помидора находится во вкладке <b>"pomodoro"</b>. <br>' +
+        'Вы можете указать перед запуском таймера задачу, над которой собираетесь работать, тогда в нее автоматически будет записано количество законченных таймеров - помов',
+        confirmButtonColor: '#ef6c00'
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .pom {
   color: #ef6c00;
   font-weight: 400;
+}
+b {
+  color: #ef6c00;
 }
 .center {
   justify-content: center;

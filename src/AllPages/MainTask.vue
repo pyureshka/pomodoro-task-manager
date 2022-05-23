@@ -29,12 +29,14 @@
           <button class="btn waves-effect waves-light" type="submit" name="action">добавить</button>
         </div>
       </form>
+
     </div>
-        <br>
   </div>
+
   <div class="fixed-action-btn">
-  <router-link to="/list" class="btn-floating btn-large waves-effect waves-light orange darken-1"><i class="material-icons">arrow_back</i></router-link>
+    <router-link to="/list" class="btn-floating btn-large waves-effect waves-light orange darken-1"><i class="material-icons">arrow_back</i></router-link>
   </div>
+
 </template>
 
 <script>

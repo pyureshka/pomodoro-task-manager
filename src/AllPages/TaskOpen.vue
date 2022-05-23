@@ -4,7 +4,7 @@
       <div v-if="task">
         <h4 class="orange-text text-darken-3">{{task.title}}</h4>
         <hr>
-          <form @submit.prevent="subT">
+          <form @submit.prevent="subminUpdateTask">
           <div class="input-field col s12">
             <textarea v-model="description" id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">описание</label>
@@ -64,7 +64,7 @@ export default {
   },
 
   methods: {
-    subT () {
+    subminUpdateTask () {
       this.$store.dispatch('updateTask', {
         id: this.task.id,
         description: this.description,

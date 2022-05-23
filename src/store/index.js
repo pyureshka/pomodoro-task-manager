@@ -5,10 +5,12 @@ export default createStore({
     tasksArr: JSON.parse(localStorage.getItem('tasksArr') || '[]'),
     donePom: JSON.parse(localStorage.getItem('donePom') || 0)
   },
+
   getters: {
     tasksArr: s => s.tasksArr,
     taskById: s => id => s.tasksArr.find(t => t.id === id),
 
+    // фильтры
     taskCompleted (state) {
       return state.tasksArr.filter(task => {
         return task.status
@@ -20,6 +22,7 @@ export default createStore({
       })
     }
   },
+
   mutations: {
     createTask (state, task) {
       state.tasksArr.push(task)
@@ -30,10 +33,10 @@ export default createStore({
       const tasks = state.tasksArr.concat()
       const idx = tasks.findIndex(t => t.id === id)
 
-      // console.log(state.tasksArr[idx])
       state.tasksArr.splice(idx, 1)
       localStorage.setItem('tasksArr', JSON.stringify(state.tasksArr))
     },
+
     updateTask (state, { id, description, tags, date }) {
       const tasks = state.tasksArr.concat()
       const idx = tasks.findIndex(t => t.id === id)
@@ -54,11 +57,13 @@ export default createStore({
       state.tasksArr = tasks
       localStorage.setItem('tasksArr', JSON.stringify(state.tasksArr))
     },
+
     inc (state) {
       //  пока так, пока здесь
       state.donePom++
       localStorage.setItem('donePom', JSON.stringify(state.donePom))
     },
+
     incPom (state, id) {
       const tasks = state.tasksArr.concat()
       const idx = tasks.findIndex(t => t.id === id)
@@ -69,6 +74,7 @@ export default createStore({
       localStorage.setItem('tasksArr', JSON.stringify(state.tasksArr))
     }
   },
+
   actions: {
     createTask ({ commit }, task) {
       commit('createTask', task)

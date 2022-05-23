@@ -5,18 +5,12 @@
     </div>
     <div class="col s6 offset-s3">
     <hr>
+    <router-link to="/registration" class="btn btn-medium waves-effect waves-light orange darken-1">reg</router-link>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  computed: {
-    tasks () {
-      return this.$store.getters.tasks
-    }
-  }
-}
 </script>
 
 <style lang="scss">

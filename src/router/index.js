@@ -6,6 +6,7 @@ import HomeP from '@/AllPages/HomePage'
 import HelpPage from '@/AllPages/HelpPage'
 import SettingPage from '@/AllPages/SettingPage'
 import TaskOpen from '@/AllPages/TaskOpen'
+import Registration from '@/components/Auth/UserRegistration'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -16,6 +17,7 @@ export default createRouter({
     { path: '/list', component: ListT },
     { path: '/pom', component: PomodoroTimer },
     { path: '/help', component: HelpPage },
-    { path: '/settings', component: SettingPage }
+    { path: '/settings', component: SettingPage },
+    { path: '/registration', component: Registration }
   ]
 })
